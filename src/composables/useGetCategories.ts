@@ -3,7 +3,7 @@ import { ref, Ref } from 'vue';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 interface UseGetCategories {
-    data: Ref<string>;
+    data: Ref<any>;
     loading: Ref<boolean>;
     error: Ref<string | null>;
     fetchData: () => Promise<void>;

@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import AddCategoryModal from '../components/modals/AddCategoryModal.vue';
 import LoggedLayout from '../layouts/LoggedLayout.vue';
 import useGetCategories from '../composables/useGetCategories.ts';
+import Loading from '../components/Loading.vue';
 
 const { fetchData, data } = useGetCategories();
 const loading = ref(true);
@@ -24,7 +25,10 @@ onMounted(async () => {
             </div>
         </div>
         <div class="overflow-x-auto shadow-md sm:rounded-lg ">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <div v-if="loading" class="w-full h-[10rem] flex justify-center items-center">
+                <Loading />
+            </div>
+            <table v-else class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
