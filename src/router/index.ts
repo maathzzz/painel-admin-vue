@@ -1,5 +1,7 @@
 import { createWebHistory, createRouter, RouteRecordRaw } from "vue-router"
 
+import LoggedLayout from '../layouts/LoggedLayout.vue'
+
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
@@ -10,11 +12,24 @@ const routes: Array<RouteRecordRaw> = [
         path: '/dashboard',
         name: 'dashboard',
         component: () => import('../views/Dashboard.vue'),
+        meta: {
+            layout: LoggedLayout
+        }
     },
     {
         path: '/register',
         name: 'register',
         component: () => import('../views/Register.vue'),
+    },
+    {
+        path: '/dashboard/products',
+        name: 'products',
+        component: () => import('../views/Products.vue'),
+    },
+    {
+        path: '/dashboard/categories',
+        name: 'categories',
+        component: () => import('../views/Categories.vue'),
     }
 ]
 

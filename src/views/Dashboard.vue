@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import SideMenu from '../components/SideMenu.vue';
-
-
+import AddProduct from '../components/modals/AddProduct.vue';
+import LoggedLayout from '../layouts/LoggedLayout.vue';
 </script>
 
 <template>
-    <SideMenu />
-    <h2 class="">Dashboard</h2>
+   <LoggedLayout>
+       <AddProduct />
+   </LoggedLayout>
 </template>
 
 <style scoped></style>
