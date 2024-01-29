@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import AddProduct from '../components/modals/AddProduct.vue';
-import LoggedLayout from '../layouts/LoggedLayout.vue';
+    import LoggedLayout from '../layouts/LoggedLayout.vue';
 </script>
 
 <template>
@@ -10,17 +10,14 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
                 <AddProduct/>
                 <div class="relative">
                     <label for="Search" class="sr-only"> Search </label>
-
                     <input
                         type="text"
                         id="Search"
                         placeholder="Pesquisar Produto..."
                         class="w-full rounded-md border-gray-200 py-2.5 pl-3 pe-10 shadow-sm sm:text-sm"
                     />
-
                     <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
                         <button type="button" class="text-gray-600 hover:text-gray-700">
-
 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -88,12 +85,5 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
 </template>
 
 <style>
-.frame-screen {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    gap: 19px;
-    position: relative;
-    width: 1064px;
-}
+
 </style>
