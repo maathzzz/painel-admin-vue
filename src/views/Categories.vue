@@ -1,6 +1,19 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import AddCategoryModal from '../components/modals/AddCategoryModal.vue';
 import LoggedLayout from '../layouts/LoggedLayout.vue';
+import useGetCategories from '../composables/useGetCategories.ts';
+
+const { fetchData, data } = useGetCategories();
+const loading = ref(true);
+
+onMounted(async () => {
+    loading.value = true;
+    await fetchData().then(() => {
+        loading.value = false;
+    });
+});
+
 </script>
 
 <template>
@@ -27,15 +40,16 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
                 </thead>
                 <tbody>
                     <tr
+                        v-for="category in data"
                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            1
+                            {{ category.id }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Eletrônicos
+                            {{ category.name }}
                         </th>
                         <td class="px-6 py-4">
-                            29/01/2024
+                            {{ category.created_at }}
                         </td>
                     </tr>
 

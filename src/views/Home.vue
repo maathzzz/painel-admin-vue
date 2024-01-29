@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import useLogin from '../composables/useLogin';
 
+const { email, password, login } = useLogin();
+
+console.log()
 </script>
 
 <template>
@@ -12,7 +16,8 @@
                     class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
                 >
                     <input
-                        type="text"
+                        v-model="email"
+                        type="email"
                         id="email"
                         class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[15rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
                         placeholder="E-mail"
@@ -30,6 +35,7 @@
                     class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
                 >
                     <input
+                        v-model="password"
                         type="password"
                         id="password"
                         class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[15rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
@@ -43,7 +49,7 @@
                     </span>
                 </label>
 
-                <button type="submit" @click="" class="w-full h-7 disabled:grayscale bg-green-500 rounded">Entrar</button>
+                <button type="submit" @click.prevent="login" class="w-full h-7 disabled:grayscale bg-green-500 rounded">Entrar</button>
             </form>
         </div>
     </main>
