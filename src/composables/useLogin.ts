@@ -1,4 +1,3 @@
-// useLogin.ts
 import { ref, Ref } from 'vue';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'vue-router';
@@ -44,8 +43,8 @@ const useLogin = (): UseLogin => {
             loading.value = false;
             error.value = null;
         } catch (err) {
-            console.error('Login error:', (err as AxiosError).response ? (err as AxiosError).response?.data : err.message);
-            error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message;
+            console.error('Login error:', (err as AxiosError).response ? (err as AxiosError).response?.data : 'Erro');
+            // error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : 'Erro';
             loading.value = false;
         }
     };

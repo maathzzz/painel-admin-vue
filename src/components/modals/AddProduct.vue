@@ -5,6 +5,8 @@ import {
     TransitionChild,
     Dialog,
 } from '@headlessui/vue'
+import useCreateProduct from '../../composables/useCreateProduct';
+import useGetProducts from '../../composables/useGetProducts';
 
 const isOpen = ref(false)
 
@@ -13,6 +15,15 @@ function closeModal() {
 }
 function openModal() {
     isOpen.value = true
+}
+
+const { fetchData } = useGetProducts();
+const { createProduct, category_id, name, price, description } = useCreateProduct()
+
+const handleSubmit = () => {
+    createProduct()
+    fetchData()
+    closeModal()
 }
 </script>
 
@@ -71,6 +82,7 @@ function openModal() {
                                         Nome
                                     </label>
                                     <input
+                                        v-model="name"
                                         type="text"
                                         placeholder="Digite o nome"
                                         className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg"
@@ -81,8 +93,9 @@ function openModal() {
                                         ID da Categoria
                                     </label>
                                     <input
+                                        v-model="category_id"
                                         type="number"
-                                        placeholder="Digite o preço"
+                                        placeholder="Digite o ID da categoria"
                                         className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg"
                                     />
                                     </div>
@@ -93,8 +106,9 @@ function openModal() {
                                         Descrição 
                                       </label>
                                       <input
+                                        v-model="description"
                                         type="text"
-                                        placeholder="Digite o nome"
+                                        placeholder="Digite a descrição"
                                         className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg"
                                       />
                                     </div>
@@ -103,6 +117,7 @@ function openModal() {
                                         Preço 
                                       </label>
                                       <input
+                                        v-model="price"
                                         type="number"
                                         placeholder="Digite o preço"
                                         className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg"
@@ -112,6 +127,7 @@ function openModal() {
                                 
                               <div className="w-full flex justify-center">
                                 <button
+                                  @click.prevent="handleSubmit"
                                   type="submit"
                                   className="w-[10.6875rem] h-[3.125rem] bg-sky-600 text-white font-bold rounded-md duration-300 hover:bg-sky-700"
                                 >
