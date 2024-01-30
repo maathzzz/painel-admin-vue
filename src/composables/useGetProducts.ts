@@ -2,7 +2,7 @@ import { ref, Ref } from 'vue';
 import axios, { AxiosResponse } from 'axios';
 
 interface UseGetProducts {
-    data: Ref<any>;
+    data: any;
     loading: Ref<boolean>;
     error: Ref<any | null>;
     fetchData: () => Promise<void>;
@@ -11,7 +11,7 @@ interface UseGetProducts {
 const token = localStorage.getItem('token');
 
 const useGetProducts = (): UseGetProducts => {
-    const data = ref('');
+    const data = ref([]);
     const loading = ref(false);
     const error = ref<any | null>(null);
 
