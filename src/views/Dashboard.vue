@@ -7,5 +7,3 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
        <span> Dashboard </span>
    </LoggedLayout>
 </template>
-
-<style scoped></style>

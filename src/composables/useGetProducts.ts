@@ -26,8 +26,6 @@ const useGetProducts = (): UseGetProducts => {
                 },
             });
 
-            console.log(response.data.meta)
-
             lastPage.value = response.data.meta.last_page;
             data.value = response.data.data;
         } catch (err) {

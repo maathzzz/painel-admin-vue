@@ -63,7 +63,3 @@ onMounted(async () => {
         </div>
     </LoggedLayout>
 </template>
-
-<style>
-
-</style>

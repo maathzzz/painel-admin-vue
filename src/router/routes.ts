@@ -6,7 +6,6 @@ export default async function routes(to, from, next) {
     if (to.meta?.auth) {
         if (auth.token) {
             const isAuthenticated = auth.isAuth;
-            console.log(auth.isAuth)
             if (isAuthenticated) {
                 next();
             } else {

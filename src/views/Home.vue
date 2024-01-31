@@ -2,8 +2,6 @@
 import useLogin from '../composables/useLogin';
 
 const { email, password, login } = useLogin();
-
-console.log()
 </script>
 
 <template>
@@ -54,6 +52,3 @@ console.log()
         </div>
     </main>
 </template>
-
-<style scoped> 
-</style>

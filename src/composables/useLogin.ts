@@ -36,7 +36,6 @@ const useLogin = (): UseLogin => {
                 password: password.value,
             } as LoginData);
 
-            console.log('Login successful:', response.data);
             setToken(response.data.data.token)
             setIsAuth(true);
             router.push('/dashboard/products')
