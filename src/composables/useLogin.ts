@@ -1,6 +1,7 @@
-import { ref, Ref } from 'vue';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'vue-router';
+import { ref, Ref } from 'vue';
+import { useAuth } from '../stores/auth';
 
 interface LoginData {
     email: string;
@@ -14,6 +15,8 @@ interface UseLogin {
     error: Ref<string | null>;
     login: () => Promise<void>;
 }
+
+const { setIsAuth, setToken } = useAuth();
 
 const useLogin = (): UseLogin => {
     const email = ref('');
@@ -34,9 +37,9 @@ const useLogin = (): UseLogin => {
             } as LoginData);
 
             console.log('Login successful:', response.data);
-            console.log(response.data.data.token)
-            localStorage.setItem('token', response.data.data.token);
-            router.push('/dashboard/products');
+            setToken(response.data.data.token)
+            setIsAuth(true);
+            router.push('/dashboard/products')
 
             email.value = '';
             password.value = '';
