@@ -21,7 +21,9 @@ const { fetchData } = useGetProducts();
 const { createProduct, category_id, name, price, description } = useCreateProduct()
 
 const handleSubmit = () => {
-    createProduct()
+    createProduct().then(() => {
+        fetchData()
+    })
     fetchData()
     closeModal()
 }

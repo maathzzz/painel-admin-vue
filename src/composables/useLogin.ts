@@ -42,6 +42,7 @@ const useLogin = (): UseLogin => {
             password.value = '';
             loading.value = false;
             error.value = null;
+            
         } catch (err) {
             console.error('Login error:', (err as AxiosError).response ? (err as AxiosError).response?.data : 'Erro');
             // error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : 'Erro';

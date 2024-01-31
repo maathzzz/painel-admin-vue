@@ -6,6 +6,7 @@ import useGetCategories from '../composables/useGetCategories.ts';
 import Loading from '../components/Loading.vue';
 
 const { fetchData, data } = useGetCategories();
+
 const loading = ref(true);
 
 onMounted(async () => {

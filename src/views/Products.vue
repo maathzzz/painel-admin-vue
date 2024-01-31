@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
-import AddProduct from '../components/modals/AddProduct.vue';
+import AddProductModal from '../components/modals/AddProductModal.vue';
 import LoggedLayout from '../layouts/LoggedLayout.vue';
 import useGetProducts from '../composables/useGetProducts.ts';
 import Loading from '../components/Loading.vue';
@@ -31,7 +31,7 @@ onMounted(async () => {
     <LoggedLayout>
         <div class="w-full flex flex-row items-center justify-start mb-4">
             <div class="flex flex-row items-center gap-3">
-                <AddProduct />
+                <AddProductModal />
                 <div class="relative">
                     <label for="Search" class="sr-only"> Search </label>
                     <input v-model="searchQuery" type="text" id="Search" placeholder="Pesquisar Produto..."
