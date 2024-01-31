@@ -45,7 +45,7 @@ const useCreateProduct = (): UseCreateProduct => {
                     Authorization: `Bearer ${token}`,
                 }
             }).then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
             });
 
 

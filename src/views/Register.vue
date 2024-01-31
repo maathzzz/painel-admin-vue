@@ -3,50 +3,65 @@
 </script>
 
 <template>
-    <main class="w-full h-screen flex justify-center items-center">
-        <div class="bg-white w-[25rem] h-[25rem] rounded-2xl flex flex-col justify-center items-center gap-6">
-            <span class="text-[#141414] text-xl font-semibold"> Cadastro - Painel Admin </span>
-            <form class="flex flex-col gap-5">
-                <label for="email"
-                    class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-                    <input type="text" id="email"
-                        class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[18rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
-                        placeholder="E-mail" />
+    <section class="">
+        <main
+          class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
+        >
+          <div class="max-w-xl lg:max-w-md">
+            <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+              Criar conta 📑
+            </h1>
 
-                    <span
-                        class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-                        E-mail
-                    </span>
+            <p class="mt-4 leading-relaxed text-gray-500">
+              Painel Administrador - Challenge Labi9 (Vue3)
+            </p>
+
+            <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+
+              <div class="col-span-6">
+                <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
+
+                <input
+                  type="email"
+                  id="Email"
+                  name="email"
+                  class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-base text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
+
+                <input
+                  type="password"
+                  id="Password"
+                  name="password"
+                  class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-base text-gray-700 shadow-sm"
+                />
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="PasswordConfirmation" class="block text-sm font-medium text-gray-700">
+                  Password Confirmation
                 </label>
 
-                <div class="w-full flex flex-row gap-4">
-                    <label for="password"
-                        class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-                        <input type="password" id="password"
-                            class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[9rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
-                            placeholder="Senha" />
+                <input
+                  type="password"
+                  id="PasswordConfirmation"
+                  name="password_confirmation"
+                  class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-base text-gray-700 shadow-sm"
+                />
+              </div>
 
-                        <span
-                            class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-                            Senha
-                        </span>
-                    </label>
-
-                    <label for="password"
-                        class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
-                        <input type="password" id="password"
-                            class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[9rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
-                            placeholder="Senha" />
-
-                        <span
-                            class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-                            Confirmar Senha
-                        </span>
-                    </label>
-                </div>
-
-                <button type="submit" @click="" class="w-full h-7 disabled:grayscale bg-green-500 rounded">Criar Conta</button>
+              <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+                <button
+                  class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                >
+                  Cria conta
+                </button>
+              </div>
             </form>
-        </div>
-    </main>
+          </div>
+        </main>
+    </section>
 </template>

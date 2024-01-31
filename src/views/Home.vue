@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 import useLogin from '../composables/useLogin';
 
 const { email, password, login } = useLogin();
@@ -6,49 +7,98 @@ const { email, password, login } = useLogin();
 
 <template>
     <main class="w-full h-screen flex justify-center items-center">
-        <div class="bg-white w-[25rem] h-[25rem] rounded-2xl flex flex-col justify-center items-center gap-6">
-            <span class="text-[#141414] text-xl font-semibold"> Login - Painel Admin </span>
-            <form class="flex flex-col gap-5">
-                <label
-                    for="email"
-                    class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
-                >
+        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-lg text-center">
+            <h1 class="text-2xl font-bold sm:text-3xl">Login</h1>
+
+            <p class="mt-4 text-gray-500">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
+            ipsa culpa autem, at itaque nostrum!
+            </p>
+        </div>
+
+        <form action="" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+            <div>
+                <label for="email" class="sr-only">Email</label>
+
+                <div class="relative">
                     <input
                         v-model="email"
                         type="email"
-                        id="email"
-                        class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[15rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
-                        placeholder="E-mail"
+                        class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                        placeholder="Enter email"
                     />
 
-                    <span
-                        class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs"
+                    <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                     >
-                        E-mail
+                        <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                        />
+                    </svg>
                     </span>
-                </label>
+                </div>
+            </div>
 
-                <label
-                    for="password"
-                    class="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
-                >
+            <div>
+                <label for="password" class="sr-only">Password</label>
+
+                <div class="relative">
                     <input
                         v-model="password"
                         type="password"
-                        id="password"
-                        class="peer text-black text-sm font-medium p-3 border-none bg-transparent placeholder-transparent w-[15rem] h-[2.3rem] focus:border-transparent focus:outline-none focus:ring-0"
-                        placeholder="Senha"
+                        class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                        placeholder="Enter password"
                     />
 
-                    <span
-                        class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs"
-                    >
-                        Senha
+                    <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 text-gray-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            />
+                        </svg>
                     </span>
-                </label>
+                </div>
+            </div>
 
-                <button type="submit" @click.prevent="login" class="w-full h-7 disabled:grayscale bg-green-500 rounded">Entrar</button>
-            </form>
+            <div class="flex items-center justify-between">
+            <p class="text-sm text-gray-500">
+                Sem uma conta?
+                <RouterLink to="/register" class="underline" href="">Cadastre-se</RouterLink>
+            </p>
+
+            <button
+                type="submit"
+                @click.prevent="login"
+                class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+            >
+                Sign in
+            </button>
+            </div>
+        </form>
         </div>
     </main>
 </template>

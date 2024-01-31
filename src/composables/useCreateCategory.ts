@@ -33,7 +33,7 @@ const useCreateCategory = (): UseCreateCategory => {
                     Authorization: `Bearer ${token}`,
                 }
             }).then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
             });
 
             // data.value = response.data;

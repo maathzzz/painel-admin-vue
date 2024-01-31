@@ -4,6 +4,7 @@ import AddProductModal from '../components/modals/AddProductModal.vue';
 import LoggedLayout from '../layouts/LoggedLayout.vue';
 import useGetProducts from '../composables/useGetProducts.ts';
 import Loading from '../components/Loading.vue';
+import DeleteProductModal from '../components/modals/DeleteProductModal.vue';
 
 const { fetchData, data, lastPage } = useGetProducts();
 const loading = ref(true);
@@ -23,7 +24,7 @@ const isLastPage = computed(() => {
     return page.value === lastPage.value;
 });
 
-const handleProductCreated = async () => {
+const handleFetchNewData = async () => {
     loading.value = true;
     await fetchData(page.value).then(() => {
         loading.value = false;
@@ -58,7 +59,7 @@ onMounted(async () => {
     <LoggedLayout>
         <div class="w-full flex flex-row items-center justify-start mb-4">
             <div class="flex flex-row items-center gap-3">
-                <AddProductModal @product-created="handleProductCreated" />
+                <AddProductModal @product-created="handleFetchNewData" />
                 <div class="relative">
                     <label for="Search" class="sr-only"> Search </label>
                     <input v-model="searchQuery" type="text" id="Search" placeholder="Pesquisar Produto..."
@@ -113,9 +114,7 @@ onMounted(async () => {
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 Ver / Editar
                             </a>
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Apagar
-                            </a>
+                            <DeleteProductModal :productId="product.id" :productName="product.name" @product-deleted="handleFetchNewData" />
                         </td>
                     </tr>
                 </tbody>
