@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import useCreateCategory from '../../composables/useCreateCategory';
 import {
     TransitionRoot,
     TransitionChild,
     Dialog,
 } from '@headlessui/vue'
+
+const { createCategory, name } = useCreateCategory()
 
 const isOpen = ref(false)
 
@@ -14,6 +17,12 @@ function closeModal() {
 function openModal() {
     isOpen.value = true
 }
+
+const handleSubmit = () => {
+    createCategory()
+    closeModal()
+}
+
 </script>
 
 <template>
@@ -57,13 +66,15 @@ function openModal() {
                                             <label className="ml-2 text-gray-600 font-semibold">
                                                 Nome
                                             </label>
-                                            <input type="text" placeholder="Digite o nome da categoria..."
+                                            <input v-model="name" type="text" placeholder="Digite o nome da categoria..."
                                                 className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg" />
                                         </div>
                                     </div>
 
                                     <div className="w-full flex justify-center">
-                                        <button type="submit"
+                                        <button 
+                                            @click.prevent="handleSubmit"
+                                            type="submit"
                                             className="w-[10.6875rem] h-[3.125rem] bg-sky-600 text-white font-bold rounded-md duration-300 hover:bg-sky-700">
                                             Enviar
                                         </button>

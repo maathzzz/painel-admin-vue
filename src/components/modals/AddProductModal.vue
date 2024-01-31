@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 import {
     TransitionRoot,
     TransitionChild,
     Dialog,
 } from '@headlessui/vue'
 import useCreateProduct from '../../composables/useCreateProduct';
-import useGetProducts from '../../composables/useGetProducts';
+
+const emit = defineEmits(['product-created'])
+
+const { createProduct, category_id, name, price, description } = useCreateProduct()
 
 const isOpen = ref(false)
 
@@ -17,15 +20,11 @@ function openModal() {
     isOpen.value = true
 }
 
-const { fetchData } = useGetProducts();
-const { createProduct, category_id, name, price, description } = useCreateProduct()
-
-const handleSubmit = () => {
-    createProduct().then(() => {
-        fetchData()
-    })
-    fetchData()
+const handleSubmit = async () => {
+  await createProduct().then(() => {
+    emit('product-created');
     closeModal()
+  });
 }
 </script>
 

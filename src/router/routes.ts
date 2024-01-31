@@ -1,5 +1,3 @@
-// routes.ts
-
 import { useAuth } from "../stores/auth.ts";
 
 export default async function routes(to, from, next) {

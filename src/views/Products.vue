@@ -5,9 +5,11 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
 import useGetProducts from '../composables/useGetProducts.ts';
 import Loading from '../components/Loading.vue';
 
-const { fetchData, data } = useGetProducts();
+const { fetchData, data, lastPage } = useGetProducts();
 const loading = ref(true);
 const searchQuery = ref('');
+
+const page = ref(1)
 
 const filteredProducts = computed(() => {
     if (!searchQuery.value) {
@@ -17,13 +19,38 @@ const filteredProducts = computed(() => {
     return data.value.filter(product => product.name.toLowerCase().includes(query));
 });
 
-onMounted(async () => {
+const isLastPage = computed(() => {
+    return page.value === lastPage.value;
+});
+
+const handleProductCreated = async () => {
     loading.value = true;
-    await fetchData().then(() => {
+    await fetchData(page.value).then(() => {
         loading.value = false;
     });
+};
 
-    console.log(data.value);
+const handlePaginationPrevious = async () => {
+    loading.value = true;
+    page.value--
+    await fetchData(1).then(() => {
+        loading.value = false;
+    });
+}
+
+const handlePaginationNext = async () => {
+    loading.value = true;
+    page.value++
+    await fetchData(page.value).then(() => {
+        loading.value = false;
+    });
+}
+
+onMounted(async () => {
+    loading.value = true;
+    await fetchData(page.value).then(() => {
+        loading.value = false;
+    });
 });
 </script>
 
@@ -31,7 +58,7 @@ onMounted(async () => {
     <LoggedLayout>
         <div class="w-full flex flex-row items-center justify-start mb-4">
             <div class="flex flex-row items-center gap-3">
-                <AddProductModal />
+                <AddProductModal @product-created="handleProductCreated" />
                 <div class="relative">
                     <label for="Search" class="sr-only"> Search </label>
                     <input v-model="searchQuery" type="text" id="Search" placeholder="Pesquisar Produto..."
@@ -47,7 +74,7 @@ onMounted(async () => {
             </div>
         </div>
         <div class="overflow-x-auto shadow-md sm:rounded-lg ">
-            <div v-if="loading" class="w-full h-[10rem] flex justify-center items-center">
+            <div v-if="loading" class="w-full h-[19rem] flex justify-center items-center">
                 <Loading />
             </div>
             <table v-else class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -94,6 +121,43 @@ onMounted(async () => {
                 </tbody>
             </table>
         </div>
+        <div class="inline-flex items-center justify-center gap-3 mt-3">
+            <button
+                :disabled="page === 1"
+                @click="handlePaginationPrevious"
+                class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+            >
+                <span class="sr-only">Next Page</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                />
+                </svg>
+            </button>
+
+            <p class="text-xs text-gray-900">
+                {{ page }}
+                <span class="mx-0.25">/</span>
+                {{ lastPage }}
+            </p>
+
+            <button
+                :disabled="isLastPage"
+                @click="handlePaginationNext"
+                class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+            >
+                <span class="sr-only">Next Page</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                />
+                </svg>
+            </button>
+    </div>
     </LoggedLayout>
 </template>
 

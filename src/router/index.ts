@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router"
 import routes from './routes'
-import LoggedLayout from '../layouts/LoggedLayout.vue'
 
 const router = createRouter ({
     history: createWebHistory(),

@@ -23,8 +23,7 @@ const useGetCategories = (): UseGetCategories => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-
-            console.log(response.data.data)
+            
             data.value = response.data.data;
         } catch (err) {
             console.error('Error fetching data:', err);
