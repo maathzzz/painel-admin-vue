@@ -1,5 +1,6 @@
 import { ref, Ref } from 'vue';
 import axios, { AxiosResponse } from 'axios';
+import { toast } from 'vue3-toastify';
 
 interface UseDeleteProduct {
     data: Ref<any>;
@@ -25,9 +26,21 @@ const useDeleteProduct = (): UseDeleteProduct => {
             });
 
             data.value = response.data.data;
-        } catch (err) {
+
+            toast("Produto apagado com sucesso!", {
+                "theme": "colored",
+                "type": "success",
+                "dangerouslyHTMLString": true
+            })
+        } catch (err : any) {
             console.error('Error deleting data:', err);
             error.value = err;
+
+            toast(`${err.message}`, {
+                "theme": "colored",
+                "type": "error",
+                "dangerouslyHTMLString": true
+            });
         }
     };
 

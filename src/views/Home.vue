@@ -3,6 +3,7 @@ import { RouterLink } from 'vue-router';
 import useLogin from '../composables/useLogin';
 
 const { email, password, login } = useLogin();
+
 </script>
 
 <template>
@@ -12,8 +13,7 @@ const { email, password, login } = useLogin();
             <h1 class="text-2xl font-bold sm:text-3xl">Login</h1>
 
             <p class="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla eaque error neque
-            ipsa culpa autem, at itaque nostrum!
+                Painel Administrador - Challenge Labi9 (Vue3)
             </p>
         </div>
 
@@ -26,7 +26,7 @@ const { email, password, login } = useLogin();
                         v-model="email"
                         type="email"
                         class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                        placeholder="Enter email"
+                        placeholder="Digite o e-mail"
                     />
 
                     <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -56,7 +56,7 @@ const { email, password, login } = useLogin();
                         v-model="password"
                         type="password"
                         class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                        placeholder="Enter password"
+                        placeholder="Digite a senha"
                     />
 
                     <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -95,7 +95,7 @@ const { email, password, login } = useLogin();
                 @click.prevent="login"
                 class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
             >
-                Sign in
+                Entrar
             </button>
             </div>
         </form>

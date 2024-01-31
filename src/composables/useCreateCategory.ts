@@ -1,5 +1,6 @@
 import { ref, Ref } from 'vue';
 import axios, { AxiosError } from 'axios';
+import { toast } from 'vue3-toastify';
 
 interface CreateCategoryData {
     name: string;
@@ -17,7 +18,6 @@ const token = localStorage.getItem('token');
 
 const useCreateCategory = (): UseCreateCategory => {
     const name = ref('');
-    // const data = ref('');
     const error = ref<any | null>(null);
 
     const createCategory = async (): Promise<void> => {
@@ -32,16 +32,25 @@ const useCreateCategory = (): UseCreateCategory => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }).then((response) => {
-                // console.log(response.data)
+            }).then(() => {
+                toast("Categoria criada com sucesso!", {
+                    "theme": "colored",
+                    "type": "success",
+                    "dangerouslyHTMLString": true
+                })
             });
 
-            // data.value = response.data;
             name.value = '';
 
-        } catch (err) {
+        } catch (err: any) {
             console.error('categories error:', (err as AxiosError).response ? (err as AxiosError).response?.data : err.message );
             error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message ;
+
+            toast(`${err.message}`, {
+                "theme": "colored",
+                "type": "error",
+                "dangerouslyHTMLString": true
+            });
         }
     };
 

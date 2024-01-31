@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 import useCreateCategory from '../../composables/useCreateCategory';
 import {
     TransitionRoot,
     TransitionChild,
     Dialog,
 } from '@headlessui/vue'
+
+const emit = defineEmits(['category-created'])
 
 const { createCategory, name } = useCreateCategory()
 
@@ -18,9 +20,11 @@ function openModal() {
     isOpen.value = true
 }
 
-const handleSubmit = () => {
-    createCategory()
-    closeModal()
+const handleSubmit = async () => {
+    await createCategory().then(() => {
+        emit('category-created');
+        closeModal()
+    });
 }
 
 </script>

@@ -9,6 +9,13 @@ const { fetchData, data } = useGetCategories();
 
 const loading = ref(true);
 
+const handleFetchNewData = async () => {
+    loading.value = true;
+    await fetchData().then(() => {
+        loading.value = false;
+    });
+};
+
 onMounted(async () => {
     loading.value = true;
     await fetchData().then(() => {
@@ -22,7 +29,7 @@ onMounted(async () => {
     <LoggedLayout>
         <div class="w-full flex flex-row items-center justify-start mb-4">
             <div class="flex flex-row items-center gap-3">
-                <AddCategoryModal />
+                <AddCategoryModal @category-created="handleFetchNewData"/>
             </div>
         </div>
         <div class="overflow-x-auto shadow-md sm:rounded-lg ">

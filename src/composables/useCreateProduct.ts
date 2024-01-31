@@ -1,5 +1,6 @@
 import { ref, Ref } from 'vue';
 import axios, { AxiosError } from 'axios';
+import { toast } from 'vue3-toastify';
 
 interface CreateProductData {
     category_id: number;
@@ -9,7 +10,6 @@ interface CreateProductData {
 }
 
 interface UseCreateProduct {
-    data: Ref<any>;
     category_id: Ref<number>;
     name: Ref<string>;
     price: Ref<number>;
@@ -26,7 +26,6 @@ const useCreateProduct = (): UseCreateProduct => {
     const name = ref('');
     const price = ref(0);
     const description = ref('');
-    const data = ref('');
     const error = ref<any | null>(null);
 
     const createProduct = async (): Promise<void> => {
@@ -34,7 +33,7 @@ const useCreateProduct = (): UseCreateProduct => {
 
             const apiUrl = 'https://challenge-labi9-4b4c472d5c07.herokuapp.com/api/products';
 
-            const response: any = await axios.post(apiUrl, {
+            const response = await axios.post(apiUrl, {
                 category_id: category_id.value,
                 name: name.value,
                 price: price.value,
@@ -44,25 +43,33 @@ const useCreateProduct = (): UseCreateProduct => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }).then((response) => {
-                // console.log(response.data)
+            }).then((res) => {
+                toast("Produto criado com sucesso!", {
+                    "theme": "colored",
+                    "type": "success",
+                    "dangerouslyHTMLString": true
+                })
+                console.log(res)
             });
-
-
-            data.value = response.data.data;
 
             category_id.value = 0;
             name.value = '';
             price.value = 0;
             description.value = '';
 
-        } catch (err) {
-            console.error('Login error:', (err as AxiosError).response ? (err as AxiosError).response?.data : "Erro");
-            error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : "Erro";
+        } catch (err : any) {
+            console.error('Product error:', (err as AxiosError).response ? (err as AxiosError).response?.data : err.message);
+            error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message;
+
+            toast(`${err.message}`, {
+                "theme": "colored",
+                "type": "error",
+                "dangerouslyHTMLString": true
+            });
         }
     };
 
-    return { category_id, name, price, description, data, error, createProduct };
+    return { category_id, name, price, description, error, createProduct };
 };
 
 export default useCreateProduct;
