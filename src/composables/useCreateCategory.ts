@@ -27,7 +27,7 @@ const useCreateCategory = (): UseCreateCategory => {
 
             const apiUrl = `${API_URL}categories`;
 
-            const response: any = await axios.post(apiUrl, {
+            await axios.post(apiUrl, {
                 name: name.value,
 
             } as CreateCategoryData, {

@@ -43,7 +43,7 @@ const useUpdateProduct = (): UseUpdateProduct => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }).then((res) => {
+            }).then(() => {
                 toast("Produto atualizado com sucesso com sucesso!", {
                     "theme": "colored",
                     "type": "success",

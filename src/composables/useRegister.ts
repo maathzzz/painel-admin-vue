@@ -1,7 +1,5 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { useRouter } from 'vue-router';
+import axios, { AxiosError } from 'axios';
 import { ref, Ref } from 'vue';
-import { useAuth } from '../stores/auth';
 import { toast } from "vue3-toastify";
 import router from '../router';
 
