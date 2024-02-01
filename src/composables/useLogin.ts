@@ -30,7 +30,7 @@ const useLogin = (): UseLogin => {
         try {
             loading.value = true;
 
-            const apiUrl = 'https://challenge-labi9-4b4c472d5c07.herokuapp.com/api/auth/login';
+            const apiUrl = `${import.meta.env.VITE_API_URL}auth/login`;
 
             const response: AxiosResponse = await axios.post(apiUrl, {
                 email: email.value,

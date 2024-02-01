@@ -19,7 +19,7 @@ const useGetProducts = (): UseGetProducts => {
 
     const fetchData = async (page : number): Promise<void> => {
         try {
-            const apiUrl = `https://challenge-labi9-4b4c472d5c07.herokuapp.com/api/products?page=${page}&perPage=5`;
+            const apiUrl = `${import.meta.env.VITE_API_URL}products?page=${page}&perPage=5`;
             const response: AxiosResponse = await axios.get(apiUrl, {
                 headers: {
                     Authorization: `Bearer ${token}`,

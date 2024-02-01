@@ -2,62 +2,56 @@ import { ref, Ref } from 'vue';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'vue3-toastify';
 
-interface CreateProductData {
+interface UpdateProductData {
     category_id: number;
     name: string;
     price: number;
     description: string;
 }
 
-interface UseCreateProduct {
+interface UseUpdateProduct {
     category_id: Ref<number>;
     name: Ref<string>;
     price: Ref<number>;
     description: Ref<string>;
+    // loading: Ref<boolean>;
     error: Ref<any | null>;
-    createProduct: () => Promise<any>;
+    updateProduct: (id: any) => Promise<any>;
 }
 
-const API_URL = import.meta.env.VITE_API_URL
 const token = localStorage.getItem('token');
 
-const useCreateProduct = (): UseCreateProduct => {
+const useUpdateProduct = (): UseUpdateProduct => {
     const category_id = ref(0);
     const name = ref('');
     const price = ref(0);
     const description = ref('');
     const error = ref<any | null>(null);
 
-    const createProduct = async (): Promise<void> => {
+    const updateProduct = async (id: number): Promise<void> => {
         try {
 
-            const apiUrl = `${API_URL}products`;
+            const apiUrl = `${import.meta.env.VITE_API_URL}products/${id}`;
 
-            await axios.post(apiUrl, {
+            await axios.put(apiUrl, {
                 category_id: category_id.value,
                 name: name.value,
                 price: price.value,
                 description: description.value
 
-            } as CreateProductData, {
+            } as UpdateProductData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
             }).then((res) => {
-                toast("Produto criado com sucesso!", {
+                toast("Produto atualizado com sucesso com sucesso!", {
                     "theme": "colored",
                     "type": "success",
                     "dangerouslyHTMLString": true
                 })
-                console.log(res)
             });
 
-            category_id.value = 0;
-            name.value = '';
-            price.value = 0;
-            description.value = '';
-
-        } catch (err : any) {
+        } catch (err: any) {
             console.error('Product error:', (err as AxiosError).response ? (err as AxiosError).response?.data : err.message);
             error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message;
 
@@ -69,7 +63,7 @@ const useCreateProduct = (): UseCreateProduct => {
         }
     };
 
-    return { category_id, name, price, description, error, createProduct };
+    return { category_id, name, price, description, error, updateProduct };
 };
 
-export default useCreateProduct;
+export default useUpdateProduct;

@@ -5,6 +5,7 @@ import LoggedLayout from '../layouts/LoggedLayout.vue';
 import useGetProducts from '../composables/useGetProducts.ts';
 import Loading from '../components/Loading.vue';
 import DeleteProductModal from '../components/modals/DeleteProductModal.vue';
+import ProductModal from '../components/modals/ProductModal/ProductModal.vue';
 
 const { fetchData, data, lastPage } = useGetProducts();
 const loading = ref(true);
@@ -65,11 +66,7 @@ onMounted(async () => {
                     <input v-model="searchQuery" type="text" id="Search" placeholder="Pesquisar Produto..."
                         class="w-full rounded-md border-gray-200 py-2.5 pl-3 pe-10 shadow-sm sm:text-sm" />
                     <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-4 w-4">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
+                        <ph-magnifying-glass :size="16" />
                     </span>
                 </div>
             </div>
@@ -111,9 +108,7 @@ onMounted(async () => {
                             }}
                         </td>
                         <td class="flex flex-row items-center px-6 py-4 gap-7">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Ver / Editar
-                            </a>
+                            <ProductModal :productId="product.id" @handleFetchNewData="handleFetchNewData"/>
                             <DeleteProductModal :productId="product.id" :productName="product.name" @product-deleted="handleFetchNewData" />
                         </td>
                     </tr>
@@ -127,13 +122,7 @@ onMounted(async () => {
                 class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
             >
                 <span class="sr-only">Next Page</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                    fill-rule="evenodd"
-                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                />
-                </svg>
+                <ph-caret-left :size="10" />
             </button>
 
             <p class="text-xs text-gray-900">
@@ -148,13 +137,7 @@ onMounted(async () => {
                 class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
             >
                 <span class="sr-only">Next Page</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                    fill-rule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd"
-                />
-                </svg>
+                    <ph-caret-right :size="10" />
             </button>
     </div>
     </LoggedLayout>

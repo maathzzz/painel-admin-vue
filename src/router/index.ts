@@ -12,7 +12,8 @@ const router = createRouter ({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: () => import('../views/Dashboard.vue'),
+            // component: () => import('../views/Dashboard.vue'),
+            redirect: '/dashboard/products',
             meta: {
                 auth: true
             }

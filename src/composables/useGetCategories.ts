@@ -17,7 +17,7 @@ const useGetCategories = (): UseGetCategories => {
 
     const fetchData = async (): Promise<void> => {
         try {
-            const apiUrl = 'https://challenge-labi9-4b4c472d5c07.herokuapp.com/api/categories';
+            const apiUrl = `${import.meta.env.VITE_API_URL}categories`;
             const response: AxiosResponse = await axios.get(apiUrl, {
                 headers: {
                     Authorization: `Bearer ${token}`,

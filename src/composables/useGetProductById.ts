@@ -2,24 +2,24 @@ import { ref, Ref } from 'vue';
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'vue3-toastify';
 
-interface UseDeleteProduct {
+interface UseGetProductById {
     data: Ref<any>;
     loading: Ref<boolean>;
     error: Ref<any | null>;
-    deleteProduct: (id: any) => Promise<void>;
+    getProductById: (id: any) => Promise<void>;
 }
 
 const token = localStorage.getItem('token');
 
-const useDeleteProduct = (): UseDeleteProduct => {
-    const data = ref([]);
+const useGetProductById = (): UseGetProductById => {
+    const data = ref<any>();
     const loading = ref(false);
     const error = ref<any | null>(null);
 
-    const deleteProduct = async (id: number): Promise<void> => {
+    const getProductById = async (id: number): Promise<void> => {
         try {
             const apiUrl = `${import.meta.env.VITE_API_URL}products/${id}`;
-            const response: AxiosResponse = await axios.delete(apiUrl, {
+            const response: AxiosResponse = await axios.get(apiUrl, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -27,16 +27,11 @@ const useDeleteProduct = (): UseDeleteProduct => {
 
             data.value = response.data.data;
 
-            toast("Produto apagado com sucesso!", {
-                "theme": "colored",
-                "type": "success",
-                "dangerouslyHTMLString": true
-            })
-        } catch (err : any) {
+        } catch (err) {
             console.error('Error deleting data:', err);
             error.value = err;
 
-            toast(`${err.message}`, {
+            toast(`${err}`, {
                 "theme": "colored",
                 "type": "error",
                 "dangerouslyHTMLString": true
@@ -44,7 +39,7 @@ const useDeleteProduct = (): UseDeleteProduct => {
         }
     };
 
-    return { data, loading, error, deleteProduct };
+    return { data, loading, error, getProductById };
 };
 
-export default useDeleteProduct;
+export default useGetProductById;

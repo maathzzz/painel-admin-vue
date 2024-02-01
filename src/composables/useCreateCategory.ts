@@ -14,6 +14,8 @@ interface UseCreateCategory {
     createCategory: () => Promise<any>;
 }
 
+const API_URL = import.meta.env.VITE_API_URL
+
 const token = localStorage.getItem('token');
 
 const useCreateCategory = (): UseCreateCategory => {
@@ -23,7 +25,7 @@ const useCreateCategory = (): UseCreateCategory => {
     const createCategory = async (): Promise<void> => {
         try {
 
-            const apiUrl = 'https://challenge-labi9-4b4c472d5c07.herokuapp.com/api/categories';
+            const apiUrl = `${API_URL}categories`;
 
             const response: any = await axios.post(apiUrl, {
                 name: name.value,

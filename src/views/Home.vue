@@ -3,7 +3,6 @@ import { RouterLink } from 'vue-router';
 import useLogin from '../composables/useLogin';
 
 const { email, password, login } = useLogin();
-
 </script>
 
 <template>

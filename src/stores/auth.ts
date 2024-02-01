@@ -27,6 +27,7 @@ export const useAuth = defineStore('auth', () => {
     function clear() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        router.push('/');
         isAuth.value = false;
         token.value = '';
     }
