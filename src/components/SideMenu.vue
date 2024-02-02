@@ -12,12 +12,12 @@ const sideMenuOptions = ref(SideMenuOptions);
 </script>
 
 <template>
-  <div class="h-screen flex flex-col bg-white gap-2 items-center py-10 w-48">
+  <aside class="md:h-screen w-full justify-between md:justify-start md:w-48 flex flex-row md:flex-col bg-white gap-2 items-center md:py-10 ">
     <router-link
       v-for="options in sideMenuOptions"
       :key="options.link"
       :to="options.link"
-      class="flex flex-col px-10 py-3 hover:bg-slate-100 duration-200 rounded cursor-pointer"
+      class="flex flex-col px-4 md:px-10 py-3 hover:bg-slate-100 duration-200 rounded cursor-pointer"
     >
       <span class="font-medium">{{ options.title }}</span>
     </router-link>
@@ -27,5 +27,5 @@ const sideMenuOptions = ref(SideMenuOptions);
     >
       <span class="font-medium">Sair</span>
     </button>
-  </div>
+  </aside>
 </template>

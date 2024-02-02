@@ -39,7 +39,7 @@ const handleRegister = async () => {
               type="text"
               name="Name"
               placeholder="Digite o nome"
-              class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              class="mt-1 w-full py-4 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
           </div>
 
@@ -55,7 +55,7 @@ const handleRegister = async () => {
               type="email"
               name="email"
               placeholder="Digite o e-mail"
-              class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              class="mt-1 w-full py-4 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
           </div>
 
@@ -71,7 +71,7 @@ const handleRegister = async () => {
               type="password"
               name="password"
               placeholder="Digite a senha"
-              class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              class="mt-1 w-full py-4 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
           </div>
 
@@ -88,8 +88,8 @@ const handleRegister = async () => {
               v-model="password_confirmation"
               type="password"
               name="password_confirmation"
-              placeholder="Digite a senha novamente"
-              class="mt-1 w-full py-2 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+              placeholder="Confirme a senha"
+              class="mt-1 w-full py-4 pl-2 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
           </div>
 
@@ -101,7 +101,7 @@ const handleRegister = async () => {
               Cria conta
             </button>
 
-            <p class="text-sm text-gray-500">
+            <p class="text-sm text-gray-500 mt-4 md:mt-0">
               Já possui uma conta?
               <RouterLink
                 to="/"

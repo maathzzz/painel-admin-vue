@@ -85,7 +85,7 @@ const handleSubmit = async () => {
 
               <form className="mt-6">
                 <div>
-                  <div className="flex justify-between gap-10">
+                  <div className="flex justify-between flex-col md:flex-row md:gap-10">
                     <div className="w-full mt-2 mb-8 flex flex-col gap-1">
                       <label className="ml-2 text-gray-600 font-semibold">
                         Nome
@@ -109,7 +109,7 @@ const handleSubmit = async () => {
                       >
                     </div>
                   </div>
-                  <div className="flex justify-between gap-10">
+                  <div className="flex justify-between flex-col md:flex-row md:gap-10">
                     <div className="w-full mt-2 mb-8 flex flex-col gap-1">
                       <label className="ml-2 text-gray-600 font-semibold">
                         Descrição 
