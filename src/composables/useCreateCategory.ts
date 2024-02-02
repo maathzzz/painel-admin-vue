@@ -7,9 +7,7 @@ interface CreateCategoryData {
 }
 
 interface UseCreateCategory {
-    // data: Ref<any>;
     name: Ref<string>;
-    // loading: Ref<boolean>;
     error: Ref<any | null>;
     createCategory: () => Promise<any>;
 }
@@ -46,7 +44,7 @@ const useCreateCategory = (): UseCreateCategory => {
 
 		} catch (err: any) {
 			console.error("categories error:", (err as AxiosError).response ? (err as AxiosError).response?.data : err.message );
-			error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message ;
+			error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message; 
 
 			toast(`${err.message}`, {
 				"theme": "colored",
