@@ -3,7 +3,7 @@ import { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
 
 export default async function routes(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
 	const auth = useAuth();
-
+	
 	if (to.meta?.auth) {
 		if (auth.token) {
 			const isAuthenticated = auth.isAuth;
@@ -16,6 +16,7 @@ export default async function routes(to: RouteLocationNormalized, from: RouteLoc
 			next({ name: "login" });
 		}
 	} else {
-		from.meta?.auth ? next({ name: "login" }) : next();
+		next();
+		console.log(from);
 	}
 }
