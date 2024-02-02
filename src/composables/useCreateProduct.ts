@@ -1,6 +1,6 @@
-import { ref, Ref } from 'vue';
-import axios, { AxiosError } from 'axios';
-import { toast } from 'vue3-toastify';
+import { ref, Ref } from "vue";
+import axios, { AxiosError } from "axios";
+import { toast } from "vue3-toastify";
 
 interface CreateProductData {
     category_id: number;
@@ -18,58 +18,58 @@ interface UseCreateProduct {
     createProduct: () => Promise<any>;
 }
 
-const API_URL = import.meta.env.VITE_API_URL
-const token = localStorage.getItem('token');
+const API_URL = import.meta.env.VITE_API_URL;
+const token = localStorage.getItem("token");
 
 const useCreateProduct = (): UseCreateProduct => {
-    const category_id = ref(0);
-    const name = ref('');
-    const price = ref(0);
-    const description = ref('');
-    const error = ref<any | null>(null);
+	const category_id = ref(0);
+	const name = ref("");
+	const price = ref(0);
+	const description = ref("");
+	const error = ref<any | null>(null);
 
-    const createProduct = async (): Promise<void> => {
-        try {
+	const createProduct = async (): Promise<void> => {
+		try {
 
-            const apiUrl = `${API_URL}products`;
+			const apiUrl = `${API_URL}products`;
 
-            await axios.post(apiUrl, {
-                category_id: category_id.value,
-                name: name.value,
-                price: price.value,
-                description: description.value
+			await axios.post(apiUrl, {
+				category_id: category_id.value,
+				name: name.value,
+				price: price.value,
+				description: description.value
 
-            } as CreateProductData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                }
-            }).then((res) => {
-                toast("Produto criado com sucesso!", {
-                    "theme": "colored",
-                    "type": "success",
-                    "dangerouslyHTMLString": true
-                })
-                console.log(res)
-            });
+			} as CreateProductData, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				}
+			}).then((res) => {
+				toast("Produto criado com sucesso!", {
+					"theme": "colored",
+					"type": "success",
+					"dangerouslyHTMLString": true
+				});
+				console.log(res);
+			});
 
-            category_id.value = 0;
-            name.value = '';
-            price.value = 0;
-            description.value = '';
+			category_id.value = 0;
+			name.value = "";
+			price.value = 0;
+			description.value = "";
 
-        } catch (err : any) {
-            console.error('Product error:', (err as AxiosError).response ? (err as AxiosError).response?.data : err.message);
-            error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message;
+		} catch (err : any) {
+			console.error("Product error:", (err as AxiosError).response ? (err as AxiosError).response?.data : err.message);
+			error.value = (err as AxiosError).response ? (err as AxiosError).response?.data : err.message;
 
-            toast(`${err.message}`, {
-                "theme": "colored",
-                "type": "error",
-                "dangerouslyHTMLString": true
-            });
-        }
-    };
+			toast(`${err.message}`, {
+				"theme": "colored",
+				"type": "error",
+				"dangerouslyHTMLString": true
+			});
+		}
+	};
 
-    return { category_id, name, price, description, error, createProduct };
+	return { category_id, name, price, description, error, createProduct };
 };
 
 export default useCreateProduct;
