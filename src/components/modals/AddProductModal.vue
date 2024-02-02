@@ -114,12 +114,12 @@ const handleSubmit = async () => {
                       <label className="ml-2 text-gray-600 font-semibold">
                         Descrição 
                       </label>
-                      <input
+                      <textarea
                         v-model="description"
                         type="text"
                         placeholder="Digite a descrição"
-                        className="max-w-full pr-3 pl-3 py-3 text-gray-600 bg-transparent outline-none border focus:border-sky-500 shadow-sm rounded-lg"
-                      >
+                        className="w-full py-2 px-3 rounded-lg border-[1px] border-slate-200 align-top shadow-sm sm:text-sm"
+                      />
                     </div>
                     <div className="w-full mt-2 mb-8 flex flex-col gap-1">
                       <label className="ml-2 text-gray-600 font-semibold">

@@ -15,11 +15,17 @@ const props = defineProps({
 	}
 });
 
-const product_id = ref(0);
 const { updateProduct, category_id, name, price, description } = useUpdateProduct();
+
+const product_id = ref(0);
 
 onMounted(() => {
 	product_id.value = props.productId;
+
+	name.value = props.product.name;
+	price.value = props.product.price;
+	category_id.value = props.product.category.id;
+	description.value = props.product.description;
 });
 
 const handleSubmit = async () => {
