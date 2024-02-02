@@ -16,6 +16,6 @@ export default async function routes(to: RouteLocationNormalized, from: RouteLoc
 			next({ name: "login" });
 		}
 	} else {
-		next();
+		from.meta?.auth ? next({ name: "login" }) : next();
 	}
 }
